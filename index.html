@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Trading Journal — 30-Jul to 06-Aug</title>
+<title>Trading Journal — 30-Jul to 07-Aug</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
@@ -150,6 +150,31 @@
   }
   .tag.cf { background: #f1e6cf; color: #8a5a1a; }
   .tag.sd { background: #e4ecf3; color: var(--navy-2); }
+  .tag.ok { background: var(--green-bg); color: var(--green); }
+  .tag.prov { background: #fbf6e8; color: var(--gold); }
+
+  .transactions-section { margin-bottom: 40px; }
+  .tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--muted);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 10px 4px;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+  .tab-btn.active { color: var(--navy); border-bottom-color: var(--gold); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
 
   .pos { color: var(--green); }
   .neg { color: var(--red); }
@@ -187,21 +212,116 @@
 
   <header>
     <div class="eyebrow">Trading Journal · NIFTY Options</div>
-    <h1>30 Jul 2026 – 06 Aug 2026</h1>
+    <h1>30 Jul 2026 – 07 Aug 2026</h1>
     <p>Lot size: 65 units per lot · Figures reconciled against Dhan ledger statement</p>
   </header>
 
   <div class="summary">
     <div class="card"><span>Opening balance</span><b>₹4,427.92</b></div>
     <div class="card"><span>Capital added</span><b>₹450,000.00</b></div>
-    <div class="card"><span>Realized P/L (raw, all days)</span><b class="neg">-₹101,276.18</b></div>
+    <div class="card"><span>Realized P/L (raw, all days)</span><b class="neg">-₹152,658.65</b></div>
     <div class="card"><span>Charges (confirmed days)</span><b class="neg">-₹6,510.03</b></div>
     <div class="card"><span>Net P/L (audited so far)</span><b class="pos">+₹107,643.31</b></div>
-    <div class="card highlight"><span>Equity (provisional)</span><b>₹346,641.71</b></div>
+    <div class="card highlight"><span>Equity (provisional)</span><b>₹295,259.24</b></div>
   </div>
   <p class="summary-note">Latest ledger-confirmed balance: ₹562,071.23. Figures beyond that date are provisional until the ledger/orders for those days are uploaded.</p>
 
-  
+  <div class="chart-section">
+    <h2>Equity Curve</h2>
+    <div id="eq"><svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:Inter,sans-serif;">
+  <defs>
+    <linearGradient id="eqfill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f2438" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#0f2438" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <line x1="70" y1="310.0" x2="870" y2="310.0" stroke="#e3ddd0" stroke-width="1"/><line x1="70" y1="252.8" x2="870" y2="252.8" stroke="#e3ddd0" stroke-width="1"/><line x1="70" y1="195.6" x2="870" y2="195.6" stroke="#e3ddd0" stroke-width="1"/><line x1="70" y1="138.4" x2="870" y2="138.4" stroke="#e3ddd0" stroke-width="1"/><line x1="70" y1="81.2" x2="870" y2="81.2" stroke="#e3ddd0" stroke-width="1"/><line x1="70" y1="24.0" x2="870" y2="24.0" stroke="#e3ddd0" stroke-width="1"/>
+  <path d="M 70.0,286.2 L 83.6,95.0 L 97.1,97.8 L 110.7,101.5 L 124.2,101.9 L 137.8,89.3 L 151.4,79.5 L 164.9,79.4 L 178.5,79.4 L 192.0,80.2 L 205.6,48.3 L 219.2,47.8 L 232.7,49.3 L 246.3,52.3 L 259.8,69.4 L 273.4,79.5 L 286.9,96.6 L 300.5,103.1 L 314.1,109.6 L 327.6,120.7 L 341.2,127.2 L 354.7,134.1 L 368.3,135.3 L 381.9,145.1 L 395.4,146.3 L 409.0,154.5 L 422.5,156.1 L 436.1,165.6 L 449.7,167.1 L 463.2,173.1 L 476.8,177.2 L 490.3,183.2 L 503.9,180.4 L 517.5,177.4 L 531.0,173.6 L 544.6,171.6 L 558.1,166.7 L 571.7,165.7 L 585.3,159.9 L 598.8,159.9 L 612.4,160.5 L 625.9,163.3 L 639.5,163.9 L 653.1,154.9 L 666.6,156.4 L 680.2,157.5 L 693.7,157.5 L 707.3,144.2 L 720.8,141.1 L 734.4,140.9 L 748.0,140.8 L 761.5,140.8 L 775.1,134.5 L 788.6,133.4 L 802.2,138.4 L 815.8,160.4 L 829.3,165.4 L 842.9,165.3 L 856.4,162.6 L 870.0,162.6 L 870.0,310.0 L 70.0,310.0 Z" fill="url(#eqfill)" stroke="none"/>
+  <path d="M 70.0,286.2 L 83.6,95.0 L 97.1,97.8 L 110.7,101.5 L 124.2,101.9 L 137.8,89.3 L 151.4,79.5 L 164.9,79.4 L 178.5,79.4 L 192.0,80.2 L 205.6,48.3 L 219.2,47.8 L 232.7,49.3 L 246.3,52.3 L 259.8,69.4 L 273.4,79.5 L 286.9,96.6 L 300.5,103.1 L 314.1,109.6 L 327.6,120.7 L 341.2,127.2 L 354.7,134.1 L 368.3,135.3 L 381.9,145.1 L 395.4,146.3 L 409.0,154.5 L 422.5,156.1 L 436.1,165.6 L 449.7,167.1 L 463.2,173.1 L 476.8,177.2 L 490.3,183.2 L 503.9,180.4 L 517.5,177.4 L 531.0,173.6 L 544.6,171.6 L 558.1,166.7 L 571.7,165.7 L 585.3,159.9 L 598.8,159.9 L 612.4,160.5 L 625.9,163.3 L 639.5,163.9 L 653.1,154.9 L 666.6,156.4 L 680.2,157.5 L 693.7,157.5 L 707.3,144.2 L 720.8,141.1 L 734.4,140.9 L 748.0,140.8 L 761.5,140.8 L 775.1,134.5 L 788.6,133.4 L 802.2,138.4 L 815.8,160.4 L 829.3,165.4 L 842.9,165.3 L 856.4,162.6 L 870.0,162.6" fill="none" stroke="#0f2438" stroke-width="2.2"/>
+  <circle cx="70.0" cy="286.2" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>28-Jul Opening: ₹4,427.92</title></circle><circle cx="83.6" cy="95.0" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>30-Jul Deposit: ₹454,427.92</title></circle><circle cx="97.1" cy="97.8" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>30-Jul Trade: ₹447,944.17</title></circle><circle cx="110.7" cy="101.5" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>30-Jul Trade: ₹439,282.92</title></circle><circle cx="124.2" cy="101.9" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>30-Jul Charges: ₹438,190.54</title></circle><circle cx="137.8" cy="89.3" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>31-Jul CF close: ₹467,941.02</title></circle><circle cx="151.4" cy="79.5" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>31-Jul CF close: ₹491,081.02</title></circle><circle cx="164.9" cy="79.4" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>31-Jul Trade: ₹491,337.78</title></circle><circle cx="178.5" cy="79.4" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>31-Jul Trade: ₹491,311.78</title></circle><circle cx="192.0" cy="80.2" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>31-Jul Charges: ₹489,396.97</title></circle><circle cx="205.6" cy="48.3" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>03-Aug Trade: ₹564,585.78</title></circle><circle cx="219.2" cy="47.8" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>03-Aug Trade: ₹565,574.07</title></circle><circle cx="232.7" cy="49.3" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>03-Aug Charges: ₹562,071.23</title></circle><circle cx="246.3" cy="52.3" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹554,971.76</title></circle><circle cx="259.8" cy="69.4" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹514,741.48</title></circle><circle cx="273.4" cy="79.5" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹491,086.29</title></circle><circle cx="286.9" cy="96.6" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹450,872.47</title></circle><circle cx="300.5" cy="103.1" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹435,532.47</title></circle><circle cx="314.1" cy="109.6" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹420,192.47</title></circle><circle cx="327.6" cy="120.7" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹394,116.51</title></circle><circle cx="341.2" cy="127.2" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹378,777.72</title></circle><circle cx="354.7" cy="134.1" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹362,478.97</title></circle><circle cx="368.3" cy="135.3" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹359,602.72</title></circle><circle cx="381.9" cy="145.1" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹336,598.48</title></circle><circle cx="395.4" cy="146.3" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹333,722.96</title></circle><circle cx="409.0" cy="154.5" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹314,417.96</title></circle><circle cx="422.5" cy="156.1" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹310,557.44</title></circle><circle cx="436.1" cy="165.6" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹288,359.46</title></circle><circle cx="449.7" cy="167.1" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹284,849.46</title></circle><circle cx="463.2" cy="173.1" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹270,705.46</title></circle><circle cx="476.8" cy="177.2" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹260,981.46</title></circle><circle cx="490.3" cy="183.2" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹246,837.46</title></circle><circle cx="503.9" cy="180.4" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹253,379.71</title></circle><circle cx="517.5" cy="177.4" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹260,525.37</title></circle><circle cx="531.0" cy="173.6" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹269,457.46</title></circle><circle cx="544.6" cy="171.6" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹274,250.13</title></circle><circle cx="558.1" cy="166.7" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹285,632.72</title></circle><circle cx="571.7" cy="165.7" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹288,024.72</title></circle><circle cx="585.3" cy="159.9" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹301,703.97</title></circle><circle cx="598.8" cy="159.9" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug (provisional): ₹301,703.97</title></circle><circle cx="612.4" cy="160.5" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>05-Aug Trade: ₹300,266.74</title></circle><circle cx="625.9" cy="163.3" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>05-Aug Trade: ₹293,622.53</title></circle><circle cx="639.5" cy="163.9" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>05-Aug Trade: ₹292,184.71</title></circle><circle cx="653.1" cy="154.9" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>05-Aug Trade: ₹313,540.45</title></circle><circle cx="666.6" cy="156.4" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>05-Aug Trade: ₹309,966.53</title></circle><circle cx="680.2" cy="157.5" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>05-Aug Trade: ₹307,251.70</title></circle><circle cx="693.7" cy="157.5" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>05-Aug (provisional): ₹307,251.70</title></circle><circle cx="707.3" cy="144.2" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>06-Aug Trade: ₹338,649.96</title></circle><circle cx="720.8" cy="141.1" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>06-Aug Trade: ₹345,877.96</title></circle><circle cx="734.4" cy="140.9" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>06-Aug Trade: ₹346,414.21</title></circle><circle cx="748.0" cy="140.8" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>06-Aug Trade: ₹346,641.71</title></circle><circle cx="761.5" cy="140.8" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>06-Aug (provisional): ₹346,641.71</title></circle><circle cx="775.1" cy="134.5" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>07-Aug Trade: ₹361,412.96</title></circle><circle cx="788.6" cy="133.4" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>07-Aug Trade: ₹364,142.96</title></circle><circle cx="802.2" cy="138.4" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>07-Aug Trade: ₹352,360.50</title></circle><circle cx="815.8" cy="160.4" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>07-Aug Trade: ₹300,557.45</title></circle><circle cx="829.3" cy="165.4" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>07-Aug Trade: ₹288,752.74</title></circle><circle cx="842.9" cy="165.3" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>07-Aug Trade: ₹288,959.99</title></circle><circle cx="856.4" cy="162.6" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>07-Aug Trade: ₹295,259.24</title></circle><circle cx="870.0" cy="162.6" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>07-Aug (provisional): ₹295,259.24</title></circle>
+  <text x="60" y="314.0" text-anchor="end" font-size="11" fill="#6b7686" font-family="IBM Plex Mono, monospace">₹-51,687</text><text x="60" y="256.8" text-anchor="end" font-size="11" fill="#6b7686" font-family="IBM Plex Mono, monospace">₹82,988</text><text x="60" y="199.6" text-anchor="end" font-size="11" fill="#6b7686" font-family="IBM Plex Mono, monospace">₹217,663</text><text x="60" y="142.4" text-anchor="end" font-size="11" fill="#6b7686" font-family="IBM Plex Mono, monospace">₹352,339</text><text x="60" y="85.2" text-anchor="end" font-size="11" fill="#6b7686" font-family="IBM Plex Mono, monospace">₹487,014</text><text x="60" y="28.0" text-anchor="end" font-size="11" fill="#6b7686" font-family="IBM Plex Mono, monospace">₹621,689</text>
+  <text x="70.0" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 70.0 332)">28-Jul Opening</text><text x="164.9" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 164.9 332)">31-Jul Trade</text><text x="259.8" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 259.8 332)">04-Aug Trade</text><text x="354.7" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 354.7 332)">04-Aug Trade</text><text x="449.7" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 449.7 332)">04-Aug Trade</text><text x="544.6" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 544.6 332)">04-Aug Trade</text><text x="639.5" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 639.5 332)">05-Aug Trade</text><text x="734.4" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 734.4 332)">06-Aug Trade</text><text x="829.3" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 829.3 332)">07-Aug Trade</text><text x="870.0" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 870.0 332)">07-Aug (provisional)</text>
+  <line x1="70" y1="310" x2="870" y2="310" stroke="#0f2438" stroke-width="1"/>
+</svg></div>
+  </div>
+
+  <div class="transactions-section">
+    <h2>Daily Transactions</h2>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('summary', this)">Daily Summary</button>
+      <button class="tab-btn" onclick="showTab('detail', this)">All Trades</button>
+    </div>
+    <div id="tab-summary" class="tab-panel active">
+      <table>
+        <tr><th>Date</th><th>Status</th><th>Capital added</th><th>Realized P/L (raw)</th><th>Charges</th><th>Net P/L</th><th>Equity after</th></tr>
+        
+    <tr>
+      <td>30 Jul 2026</td>
+      <td><span class="tag ok">Confirmed</span></td>
+      <td>₹450,000.00</td>
+      <td>-₹15,145.00</td>
+      <td>-₹1,092.38</td>
+      <td class="neg">-₹16,237.38</td>
+      <td>₹438,190.54</td>
+    </tr>
+    <tr>
+      <td>31 Jul 2026</td>
+      <td><span class="tag ok">Confirmed</span></td>
+      <td>—</td>
+      <td>+₹53,121.24</td>
+      <td>-₹1,914.81</td>
+      <td class="pos">+₹51,206.43</td>
+      <td>₹489,396.97</td>
+    </tr>
+    <tr>
+      <td>03 Aug 2026</td>
+      <td><span class="tag ok">Confirmed</span></td>
+      <td>—</td>
+      <td>+₹76,177.10</td>
+      <td>-₹3,502.84</td>
+      <td class="pos">+₹72,674.26</td>
+      <td>₹562,071.23</td>
+    </tr>
+    <tr>
+      <td>04 Aug 2026</td>
+      <td><span class="tag prov">Provisional</span></td>
+      <td>—</td>
+      <td>-₹260,367.26</td>
+      <td>—</td>
+      <td class="neg">-₹260,367.26</td>
+      <td>₹301,703.97</td>
+    </tr>
+    <tr>
+      <td>05 Aug 2026</td>
+      <td><span class="tag prov">Provisional</span></td>
+      <td>—</td>
+      <td>+₹5,547.73</td>
+      <td>—</td>
+      <td class="pos">+₹5,547.73</td>
+      <td>₹307,251.70</td>
+    </tr>
+    <tr>
+      <td>06 Aug 2026</td>
+      <td><span class="tag prov">Provisional</span></td>
+      <td>—</td>
+      <td>+₹39,390.01</td>
+      <td>—</td>
+      <td class="pos">+₹39,390.01</td>
+      <td>₹346,641.71</td>
+    </tr>
+    <tr>
+      <td>07 Aug 2026</td>
+      <td><span class="tag prov">Provisional</span></td>
+      <td>—</td>
+      <td>-₹51,382.47</td>
+      <td>—</td>
+      <td class="neg">-₹51,382.47</td>
+      <td>₹295,259.24</td>
+    </tr>
+      </table>
+    </div>
+    <div id="tab-detail" class="tab-panel">
+      
     <section class="day">
       <h2>30 Jul 2026</h2>
       <div class="daystats">
@@ -776,24 +896,98 @@
       <p class="pending">Ledger statement not yet uploaded for this day — figures above are raw trade-price P/L and do not yet include brokerage/STT/GST charges. Upload the Dhan ledger covering 06 Aug 2026 to confirm the audited net P/L and equity.</p>
     </section>
     
-
-  <div class="chart-section">
-    <h2>Equity Curve</h2>
-    <div id="eq"><svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:Inter,sans-serif;">
-  <defs>
-    <linearGradient id="eqfill" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0f2438" stop-opacity="0.14"/>
-      <stop offset="100%" stop-color="#0f2438" stop-opacity="0"/>
-    </linearGradient>
-  </defs>
-  <line x1="70" y1="310.0" x2="870" y2="310.0" stroke="#e3ddd0" stroke-width="1"/><line x1="70" y1="252.8" x2="870" y2="252.8" stroke="#e3ddd0" stroke-width="1"/><line x1="70" y1="195.6" x2="870" y2="195.6" stroke="#e3ddd0" stroke-width="1"/><line x1="70" y1="138.4" x2="870" y2="138.4" stroke="#e3ddd0" stroke-width="1"/><line x1="70" y1="81.2" x2="870" y2="81.2" stroke="#e3ddd0" stroke-width="1"/><line x1="70" y1="24.0" x2="870" y2="24.0" stroke="#e3ddd0" stroke-width="1"/>
-  <path d="M 70.0,286.2 L 85.7,95.0 L 101.4,97.8 L 117.1,101.5 L 132.7,101.9 L 148.4,89.3 L 164.1,79.5 L 179.8,79.4 L 195.5,79.4 L 211.2,80.2 L 226.9,48.3 L 242.5,47.8 L 258.2,49.3 L 273.9,52.3 L 289.6,69.4 L 305.3,79.5 L 321.0,96.6 L 336.7,103.1 L 352.4,109.6 L 368.0,120.7 L 383.7,127.2 L 399.4,134.1 L 415.1,135.3 L 430.8,145.1 L 446.5,146.3 L 462.2,154.5 L 477.8,156.1 L 493.5,165.6 L 509.2,167.1 L 524.9,173.1 L 540.6,177.2 L 556.3,183.2 L 572.0,180.4 L 587.6,177.4 L 603.3,173.6 L 619.0,171.6 L 634.7,166.7 L 650.4,165.7 L 666.1,159.9 L 681.8,159.9 L 697.5,160.5 L 713.1,163.3 L 728.8,163.9 L 744.5,154.9 L 760.2,156.4 L 775.9,157.5 L 791.6,157.5 L 807.3,144.2 L 822.9,141.1 L 838.6,140.9 L 854.3,140.8 L 870.0,140.8 L 870.0,310.0 L 70.0,310.0 Z" fill="url(#eqfill)" stroke="none"/>
-  <path d="M 70.0,286.2 L 85.7,95.0 L 101.4,97.8 L 117.1,101.5 L 132.7,101.9 L 148.4,89.3 L 164.1,79.5 L 179.8,79.4 L 195.5,79.4 L 211.2,80.2 L 226.9,48.3 L 242.5,47.8 L 258.2,49.3 L 273.9,52.3 L 289.6,69.4 L 305.3,79.5 L 321.0,96.6 L 336.7,103.1 L 352.4,109.6 L 368.0,120.7 L 383.7,127.2 L 399.4,134.1 L 415.1,135.3 L 430.8,145.1 L 446.5,146.3 L 462.2,154.5 L 477.8,156.1 L 493.5,165.6 L 509.2,167.1 L 524.9,173.1 L 540.6,177.2 L 556.3,183.2 L 572.0,180.4 L 587.6,177.4 L 603.3,173.6 L 619.0,171.6 L 634.7,166.7 L 650.4,165.7 L 666.1,159.9 L 681.8,159.9 L 697.5,160.5 L 713.1,163.3 L 728.8,163.9 L 744.5,154.9 L 760.2,156.4 L 775.9,157.5 L 791.6,157.5 L 807.3,144.2 L 822.9,141.1 L 838.6,140.9 L 854.3,140.8 L 870.0,140.8" fill="none" stroke="#0f2438" stroke-width="2.2"/>
-  <circle cx="70.0" cy="286.2" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>28-Jul Opening: ₹4,427.92</title></circle><circle cx="85.7" cy="95.0" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>30-Jul Deposit: ₹454,427.92</title></circle><circle cx="101.4" cy="97.8" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>30-Jul Trade: ₹447,944.17</title></circle><circle cx="117.1" cy="101.5" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>30-Jul Trade: ₹439,282.92</title></circle><circle cx="132.7" cy="101.9" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>30-Jul Charges: ₹438,190.54</title></circle><circle cx="148.4" cy="89.3" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>31-Jul CF close: ₹467,941.02</title></circle><circle cx="164.1" cy="79.5" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>31-Jul CF close: ₹491,081.02</title></circle><circle cx="179.8" cy="79.4" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>31-Jul Trade: ₹491,337.78</title></circle><circle cx="195.5" cy="79.4" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>31-Jul Trade: ₹491,311.78</title></circle><circle cx="211.2" cy="80.2" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>31-Jul Charges: ₹489,396.97</title></circle><circle cx="226.9" cy="48.3" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>03-Aug Trade: ₹564,585.78</title></circle><circle cx="242.5" cy="47.8" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>03-Aug Trade: ₹565,574.07</title></circle><circle cx="258.2" cy="49.3" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>03-Aug Charges: ₹562,071.23</title></circle><circle cx="273.9" cy="52.3" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹554,971.76</title></circle><circle cx="289.6" cy="69.4" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹514,741.48</title></circle><circle cx="305.3" cy="79.5" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹491,086.29</title></circle><circle cx="321.0" cy="96.6" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹450,872.47</title></circle><circle cx="336.7" cy="103.1" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹435,532.47</title></circle><circle cx="352.4" cy="109.6" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹420,192.47</title></circle><circle cx="368.0" cy="120.7" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹394,116.51</title></circle><circle cx="383.7" cy="127.2" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹378,777.72</title></circle><circle cx="399.4" cy="134.1" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹362,478.97</title></circle><circle cx="415.1" cy="135.3" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹359,602.72</title></circle><circle cx="430.8" cy="145.1" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹336,598.48</title></circle><circle cx="446.5" cy="146.3" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹333,722.96</title></circle><circle cx="462.2" cy="154.5" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹314,417.96</title></circle><circle cx="477.8" cy="156.1" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹310,557.44</title></circle><circle cx="493.5" cy="165.6" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹288,359.46</title></circle><circle cx="509.2" cy="167.1" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹284,849.46</title></circle><circle cx="524.9" cy="173.1" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹270,705.46</title></circle><circle cx="540.6" cy="177.2" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹260,981.46</title></circle><circle cx="556.3" cy="183.2" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹246,837.46</title></circle><circle cx="572.0" cy="180.4" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹253,379.71</title></circle><circle cx="587.6" cy="177.4" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹260,525.37</title></circle><circle cx="603.3" cy="173.6" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹269,457.46</title></circle><circle cx="619.0" cy="171.6" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹274,250.13</title></circle><circle cx="634.7" cy="166.7" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹285,632.72</title></circle><circle cx="650.4" cy="165.7" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹288,024.72</title></circle><circle cx="666.1" cy="159.9" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹301,703.97</title></circle><circle cx="681.8" cy="159.9" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug (provisional): ₹301,703.97</title></circle><circle cx="697.5" cy="160.5" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>05-Aug Trade: ₹300,266.74</title></circle><circle cx="713.1" cy="163.3" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>05-Aug Trade: ₹293,622.53</title></circle><circle cx="728.8" cy="163.9" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>05-Aug Trade: ₹292,184.71</title></circle><circle cx="744.5" cy="154.9" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>05-Aug Trade: ₹313,540.45</title></circle><circle cx="760.2" cy="156.4" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>05-Aug Trade: ₹309,966.53</title></circle><circle cx="775.9" cy="157.5" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>05-Aug Trade: ₹307,251.70</title></circle><circle cx="791.6" cy="157.5" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>05-Aug (provisional): ₹307,251.70</title></circle><circle cx="807.3" cy="144.2" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>06-Aug Trade: ₹338,649.96</title></circle><circle cx="822.9" cy="141.1" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>06-Aug Trade: ₹345,877.96</title></circle><circle cx="838.6" cy="140.9" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>06-Aug Trade: ₹346,414.21</title></circle><circle cx="854.3" cy="140.8" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>06-Aug Trade: ₹346,641.71</title></circle><circle cx="870.0" cy="140.8" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>06-Aug (provisional): ₹346,641.71</title></circle>
-  <text x="60" y="314.0" text-anchor="end" font-size="11" fill="#6b7686" font-family="IBM Plex Mono, monospace">₹-51,687</text><text x="60" y="256.8" text-anchor="end" font-size="11" fill="#6b7686" font-family="IBM Plex Mono, monospace">₹82,988</text><text x="60" y="199.6" text-anchor="end" font-size="11" fill="#6b7686" font-family="IBM Plex Mono, monospace">₹217,663</text><text x="60" y="142.4" text-anchor="end" font-size="11" fill="#6b7686" font-family="IBM Plex Mono, monospace">₹352,339</text><text x="60" y="85.2" text-anchor="end" font-size="11" fill="#6b7686" font-family="IBM Plex Mono, monospace">₹487,014</text><text x="60" y="28.0" text-anchor="end" font-size="11" fill="#6b7686" font-family="IBM Plex Mono, monospace">₹621,689</text>
-  <text x="70.0" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 70.0 332)">28-Jul Opening</text><text x="164.1" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 164.1 332)">31-Jul CF close</text><text x="258.2" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 258.2 332)">03-Aug Charges</text><text x="352.4" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 352.4 332)">04-Aug Trade</text><text x="446.5" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 446.5 332)">04-Aug Trade</text><text x="540.6" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 540.6 332)">04-Aug Trade</text><text x="634.7" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 634.7 332)">04-Aug Trade</text><text x="728.8" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 728.8 332)">05-Aug Trade</text><text x="822.9" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 822.9 332)">06-Aug Trade</text><text x="870.0" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 870.0 332)">06-Aug (provisional)</text>
-  <line x1="70" y1="310" x2="870" y2="310" stroke="#0f2438" stroke-width="1"/>
-</svg></div>
+    <section class="day">
+      <h2>07 Aug 2026</h2>
+      <div class="daystats">
+        
+        <div class="stat"><span>Realized P/L (raw)</span><b class="neg">-₹51,382.47</b></div>
+        <div class="stat"><span>Equity after (provisional)</span><b>₹295,259.24</b></div>
+      </div>
+      <table>
+        <tr><th>Instrument</th><th>Type</th><th>Opened</th><th>Closed</th><th>Lots</th><th>Qty</th><th>Entry</th><th>Exit</th><th>P/L</th></tr>
+        
+        <tr>
+          <td>NIFTY 24650 PUT</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>09:24:21</td>
+          <td>09:30:56</td>
+          <td>27</td>
+          <td>1755</td>
+          <td>140.31</td>
+          <td>148.73</td>
+          <td class="pos">+₹14,771.25</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24650 PUT</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>09:24:21</td>
+          <td>09:30:56</td>
+          <td>5</td>
+          <td>325</td>
+          <td>140.35</td>
+          <td>148.75</td>
+          <td class="pos">+₹2,730.00</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>09:52:27</td>
+          <td>11:51:08</td>
+          <td>5</td>
+          <td>325</td>
+          <td>153.10</td>
+          <td>116.85</td>
+          <td class="neg">-₹11,782.45</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>09:52:27</td>
+          <td>11:51:08</td>
+          <td>22</td>
+          <td>1430</td>
+          <td>153.10</td>
+          <td>116.88</td>
+          <td class="neg">-₹51,803.05</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>09:52:27</td>
+          <td>11:51:08</td>
+          <td>5</td>
+          <td>325</td>
+          <td>153.20</td>
+          <td>116.88</td>
+          <td class="neg">-₹11,804.72</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24550 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>15:05:54</td>
+          <td>15:08:04</td>
+          <td>1</td>
+          <td>65</td>
+          <td>134.80</td>
+          <td>137.99</td>
+          <td class="pos">+₹207.25</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24550 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>15:06:31</td>
+          <td>15:08:04</td>
+          <td>25</td>
+          <td>1625</td>
+          <td>134.11</td>
+          <td>137.99</td>
+          <td class="pos">+₹6,299.25</td>
+        </tr>
+      </table>
+      <p class="pending">Ledger statement not yet uploaded for this day — figures above are raw trade-price P/L and do not yet include brokerage/STT/GST charges. Upload the Dhan ledger covering 07 Aug 2026 to confirm the audited net P/L and equity.</p>
+    </section>
+    
+    </div>
   </div>
 
   <div class="ledger-section">
@@ -843,6 +1037,15 @@
   </footer>
 
 </div>
+
+<script>
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
 
 </body>
 </html>
