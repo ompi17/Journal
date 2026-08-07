@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trading Journal — 30-Jul to 06-Aug</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f2438;
+    --navy-2: #16324f;
+    --paper: #f6f4ef;
+    --card: #ffffff;
+    --line: #e3ddd0;
+    --ink: #1c2b3a;
+    --muted: #6b7686;
+    --green: #147a4c;
+    --green-bg: #e8f5ee;
+    --red: #b3392c;
+    --red-bg: #fbeae7;
+    --gold: #b8863b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    padding: 48px 24px 80px;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; }
+  header { margin-bottom: 36px; border-bottom: 2px solid var(--navy); padding-bottom: 20px; }
+  header .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 40px;
+    font-weight: 600;
+    margin: 0 0 6px;
+    color: var(--navy);
+  }
+  header p { margin: 0; color: var(--muted); font-size: 15px; }
+
+  .summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin-bottom: 12px;
+  }
+  .summary .card {
+    background: var(--card);
+    padding: 18px 16px;
+  }
+  .summary .card span {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .summary .card b {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .summary .card.highlight { background: var(--navy); }
+  .summary .card.highlight span { color: #a9bdd1; }
+  .summary .card.highlight b { color: #fff; }
+
+  .summary-note {
+    font-size: 12.5px;
+    color: var(--muted);
+    margin: 0 0 40px;
+    font-style: italic;
+  }
+
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--navy);
+    margin: 0 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  section.day { margin-bottom: 40px; }
+  .daystats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 16px;
+  }
+  .daystats .stat span {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .daystats .stat b {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    font-size: 13.5px;
+  }
+  th, td {
+    padding: 10px 12px;
+    text-align: right;
+    border-bottom: 1px solid var(--line);
+    font-variant-numeric: tabular-nums;
+  }
+  th:first-child, td:first-child { text-align: left; }
+  th:nth-child(2), td:nth-child(2) { text-align: left; }
+  th {
+    background: var(--navy);
+    color: #dce6ee;
+    font-weight: 500;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  tr:last-child td { border-bottom: none; }
+
+  .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .tag.cf { background: #f1e6cf; color: #8a5a1a; }
+  .tag.sd { background: #e4ecf3; color: var(--navy-2); }
+
+  .pos { color: var(--green); }
+  .neg { color: var(--red); }
+
+  .chart-section { margin-bottom: 40px; }
+  #eq { background: var(--card); border: 1px solid var(--line); padding: 16px 8px; }
+
+  .ledger-section table td:nth-child(3) { font-family: 'IBM Plex Mono', monospace; }
+  .ledger-section table td:nth-child(4) { font-family: 'IBM Plex Mono', monospace; }
+
+  footer {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  footer b { color: var(--ink); }
+
+  .pending {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    background: #fbf6e8;
+    border: 1px dashed #d8c898;
+    padding: 12px 14px;
+    border-radius: 4px;
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Trading Journal · NIFTY Options</div>
+    <h1>30 Jul 2026 – 06 Aug 2026</h1>
+    <p>Lot size: 65 units per lot · Figures reconciled against Dhan ledger statement</p>
+  </header>
+
+  <div class="summary">
+    <div class="card"><span>Opening balance</span><b>₹4,427.92</b></div>
+    <div class="card"><span>Capital added</span><b>₹450,000.00</b></div>
+    <div class="card"><span>Realized P/L (raw, all days)</span><b class="neg">-₹101,276.18</b></div>
+    <div class="card"><span>Charges (confirmed days)</span><b class="neg">-₹6,510.03</b></div>
+    <div class="card"><span>Net P/L (audited so far)</span><b class="pos">+₹107,643.31</b></div>
+    <div class="card highlight"><span>Equity (provisional)</span><b>₹346,641.71</b></div>
+  </div>
+  <p class="summary-note">Latest ledger-confirmed balance: ₹562,071.23. Figures beyond that date are provisional until the ledger/orders for those days are uploaded.</p>
+
+  
+    <section class="day">
+      <h2>30 Jul 2026</h2>
+      <div class="daystats">
+        <div class="stat"><span>Capital added</span><b>₹450,000.00</b></div>
+        <div class="stat"><span>Realized P/L (raw)</span><b class="neg">-₹15,145.00</b></div>
+        <div class="stat"><span>Charges (STT/brokerage/etc.)</span><b class="neg">-₹1,092.38</b></div>
+        <div class="stat"><span>Net P/L</span><b class="neg">-₹16,237.38</b></div>
+        <div class="stat"><span>Equity after</span><b>₹438,190.54</b></div>
+      </div>
+      <table>
+        <tr><th>Instrument</th><th>Type</th><th>Opened</th><th>Closed</th><th>Lots</th><th>Qty</th><th>Entry</th><th>Exit</th><th>P/L</th></tr>
+        
+        <tr>
+          <td>NIFTY 24250 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>09:37:31</td>
+          <td>11:55:18</td>
+          <td>20</td>
+          <td>1300</td>
+          <td>111.42</td>
+          <td>106.44</td>
+          <td class="neg">-₹6,483.75</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24250 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>09:37:31</td>
+          <td>11:55:18</td>
+          <td>27</td>
+          <td>1755</td>
+          <td>111.37</td>
+          <td>106.44</td>
+          <td class="neg">-₹8,661.25</td>
+        </tr>
+      </table>
+      
+    </section>
+    
+    <section class="day">
+      <h2>31 Jul 2026</h2>
+      <div class="daystats">
+        
+        <div class="stat"><span>Realized P/L (raw)</span><b class="pos">+₹53,121.24</b></div>
+        <div class="stat"><span>Charges (STT/brokerage/etc.)</span><b class="neg">-₹1,914.81</b></div>
+        <div class="stat"><span>Net P/L</span><b class="pos">+₹51,206.43</b></div>
+        <div class="stat"><span>Equity after</span><b>₹489,396.97</b></div>
+      </div>
+      <table>
+        <tr><th>Instrument</th><th>Type</th><th>Opened</th><th>Closed</th><th>Lots</th><th>Qty</th><th>Entry</th><th>Exit</th><th>P/L</th></tr>
+        
+        <tr>
+          <td>NIFTY 24300 CALL</td>
+          <td><span class="tag cf">Carry-fwd</span></td>
+          <td>30-Jul 12:35:01</td>
+          <td>09:15:56</td>
+          <td>27</td>
+          <td>1755</td>
+          <td>122.72</td>
+          <td>139.67</td>
+          <td class="pos">+₹29,750.48</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24300 CALL</td>
+          <td><span class="tag cf">Carry-fwd</span></td>
+          <td>30-Jul 12:35:01</td>
+          <td>09:15:56</td>
+          <td>21</td>
+          <td>1365</td>
+          <td>122.74</td>
+          <td>139.69</td>
+          <td class="pos">+₹23,140.00</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24300 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>09:47:40</td>
+          <td>10:59:20</td>
+          <td>27</td>
+          <td>1755</td>
+          <td>126.47</td>
+          <td>126.62</td>
+          <td class="pos">+₹256.76</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24300 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>09:47:40</td>
+          <td>10:59:21</td>
+          <td>21</td>
+          <td>1365</td>
+          <td>126.55</td>
+          <td>126.53</td>
+          <td class="neg">-₹26.00</td>
+        </tr>
+      </table>
+      
+    </section>
+    
+    <section class="day">
+      <h2>03 Aug 2026</h2>
+      <div class="daystats">
+        
+        <div class="stat"><span>Realized P/L (raw)</span><b class="pos">+₹76,177.10</b></div>
+        <div class="stat"><span>Charges (STT/brokerage/etc.)</span><b class="neg">-₹3,502.84</b></div>
+        <div class="stat"><span>Net P/L</span><b class="pos">+₹72,674.26</b></div>
+        <div class="stat"><span>Equity after</span><b>₹562,071.23</b></div>
+      </div>
+      <table>
+        <tr><th>Instrument</th><th>Type</th><th>Opened</th><th>Closed</th><th>Lots</th><th>Qty</th><th>Entry</th><th>Exit</th><th>P/L</th></tr>
+        
+        <tr>
+          <td>NIFTY 24500 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>09:20:00</td>
+          <td>15:20:00</td>
+          <td>64</td>
+          <td>4160</td>
+          <td>100.92</td>
+          <td>118.99</td>
+          <td class="pos">+₹75,188.81</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24550 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>09:20:00</td>
+          <td>15:20:00</td>
+          <td>144</td>
+          <td>9360</td>
+          <td>86.15</td>
+          <td>86.26</td>
+          <td class="pos">+₹988.29</td>
+        </tr>
+      </table>
+      <p class="pending">Sourced from Dhan's official Realised P&amp;L report (per-instrument totals) rather than an Executed Orders export — actual fill times aren't available, so Opened/Closed times above are placeholders. Buy/sell averages and P&amp;L are exact.</p>
+    </section>
+    
+    <section class="day">
+      <h2>04 Aug 2026</h2>
+      <div class="daystats">
+        
+        <div class="stat"><span>Realized P/L (raw)</span><b class="neg">-₹260,367.26</b></div>
+        <div class="stat"><span>Equity after (provisional)</span><b>₹301,703.97</b></div>
+      </div>
+      <table>
+        <tr><th>Instrument</th><th>Type</th><th>Opened</th><th>Closed</th><th>Lots</th><th>Qty</th><th>Entry</th><th>Exit</th><th>P/L</th></tr>
+        
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>10:08:32</td>
+          <td>15:12:03</td>
+          <td>3</td>
+          <td>195</td>
+          <td>50.51</td>
+          <td>14.10</td>
+          <td class="neg">-₹7,099.46</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>10:08:32</td>
+          <td>15:12:03</td>
+          <td>17</td>
+          <td>1105</td>
+          <td>50.51</td>
+          <td>14.10</td>
+          <td class="neg">-₹40,230.29</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>10:08:32</td>
+          <td>15:12:03</td>
+          <td>10</td>
+          <td>650</td>
+          <td>50.49</td>
+          <td>14.10</td>
+          <td class="neg">-₹23,655.19</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>10:08:32</td>
+          <td>15:12:03</td>
+          <td>17</td>
+          <td>1105</td>
+          <td>50.49</td>
+          <td>14.10</td>
+          <td class="neg">-₹40,213.82</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>10:28:02</td>
+          <td>15:12:03</td>
+          <td>10</td>
+          <td>650</td>
+          <td>37.70</td>
+          <td>14.10</td>
+          <td class="neg">-₹15,340.00</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>10:28:02</td>
+          <td>15:12:03</td>
+          <td>10</td>
+          <td>650</td>
+          <td>37.70</td>
+          <td>14.10</td>
+          <td class="neg">-₹15,340.00</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>10:28:02</td>
+          <td>15:12:03</td>
+          <td>17</td>
+          <td>1105</td>
+          <td>37.70</td>
+          <td>14.10</td>
+          <td class="neg">-₹26,075.95</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>10:28:02</td>
+          <td>15:12:03</td>
+          <td>10</td>
+          <td>650</td>
+          <td>37.70</td>
+          <td>14.10</td>
+          <td class="neg">-₹15,338.80</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>11:00:19</td>
+          <td>15:12:03</td>
+          <td>17</td>
+          <td>1105</td>
+          <td>28.85</td>
+          <td>14.10</td>
+          <td class="neg">-₹16,298.75</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>11:00:19</td>
+          <td>15:12:03</td>
+          <td>3</td>
+          <td>195</td>
+          <td>28.85</td>
+          <td>14.10</td>
+          <td class="neg">-₹2,876.25</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>11:00:19</td>
+          <td>15:12:03</td>
+          <td>24</td>
+          <td>1560</td>
+          <td>28.85</td>
+          <td>14.10</td>
+          <td class="neg">-₹23,004.23</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>11:00:19</td>
+          <td>15:12:03</td>
+          <td>3</td>
+          <td>195</td>
+          <td>28.85</td>
+          <td>14.10</td>
+          <td class="neg">-₹2,875.53</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>11:00:20</td>
+          <td>15:12:03</td>
+          <td>20</td>
+          <td>1300</td>
+          <td>28.95</td>
+          <td>14.10</td>
+          <td class="neg">-₹19,305.00</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>11:00:20</td>
+          <td>15:12:03</td>
+          <td>4</td>
+          <td>260</td>
+          <td>28.95</td>
+          <td>14.10</td>
+          <td class="neg">-₹3,860.52</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>11:00:20</td>
+          <td>15:12:03</td>
+          <td>23</td>
+          <td>1495</td>
+          <td>28.95</td>
+          <td>14.10</td>
+          <td class="neg">-₹22,197.98</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>11:30:43</td>
+          <td>15:12:03</td>
+          <td>4</td>
+          <td>260</td>
+          <td>27.60</td>
+          <td>14.10</td>
+          <td class="neg">-₹3,510.00</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>11:30:43</td>
+          <td>15:12:03</td>
+          <td>16</td>
+          <td>1040</td>
+          <td>27.60</td>
+          <td>14.00</td>
+          <td class="neg">-₹14,144.00</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>11:30:43</td>
+          <td>15:12:03</td>
+          <td>11</td>
+          <td>715</td>
+          <td>27.60</td>
+          <td>14.00</td>
+          <td class="neg">-₹9,724.00</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>11:30:43</td>
+          <td>15:12:03</td>
+          <td>16</td>
+          <td>1040</td>
+          <td>27.60</td>
+          <td>14.00</td>
+          <td class="neg">-₹14,144.00</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>13:45:20</td>
+          <td>15:12:03</td>
+          <td>11</td>
+          <td>715</td>
+          <td>4.85</td>
+          <td>14.00</td>
+          <td class="pos">+₹6,542.25</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>13:45:20</td>
+          <td>15:12:03</td>
+          <td>12</td>
+          <td>780</td>
+          <td>4.85</td>
+          <td>14.01</td>
+          <td class="pos">+₹7,145.67</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>13:45:20</td>
+          <td>15:12:03</td>
+          <td>15</td>
+          <td>975</td>
+          <td>4.85</td>
+          <td>14.01</td>
+          <td class="pos">+₹8,932.08</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>13:45:20</td>
+          <td>15:12:03</td>
+          <td>8</td>
+          <td>520</td>
+          <td>4.85</td>
+          <td>14.07</td>
+          <td class="pos">+₹4,792.67</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>13:45:20</td>
+          <td>15:12:03</td>
+          <td>19</td>
+          <td>1235</td>
+          <td>4.85</td>
+          <td>14.07</td>
+          <td class="pos">+₹11,382.59</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>13:45:20</td>
+          <td>15:12:03</td>
+          <td>4</td>
+          <td>260</td>
+          <td>4.85</td>
+          <td>14.05</td>
+          <td class="pos">+₹2,392.00</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>13:45:30</td>
+          <td>15:12:03</td>
+          <td>23</td>
+          <td>1495</td>
+          <td>4.90</td>
+          <td>14.05</td>
+          <td class="pos">+₹13,679.25</td>
+        </tr>
+      </table>
+      <p class="pending">Ledger statement not yet uploaded for this day — figures above are raw trade-price P/L and do not yet include brokerage/STT/GST charges. Upload the Dhan ledger covering 04 Aug 2026 to confirm the audited net P/L and equity.</p>
+    </section>
+    
+    <section class="day">
+      <h2>05 Aug 2026</h2>
+      <div class="daystats">
+        
+        <div class="stat"><span>Realized P/L (raw)</span><b class="pos">+₹5,547.73</b></div>
+        <div class="stat"><span>Equity after (provisional)</span><b>₹307,251.70</b></div>
+      </div>
+      <table>
+        <tr><th>Instrument</th><th>Type</th><th>Opened</th><th>Closed</th><th>Lots</th><th>Qty</th><th>Entry</th><th>Exit</th><th>P/L</th></tr>
+        
+        <tr>
+          <td>NIFTY 24650 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>11:33:44</td>
+          <td>11:50:07</td>
+          <td>5</td>
+          <td>325</td>
+          <td>130.72</td>
+          <td>126.30</td>
+          <td class="neg">-₹1,437.22</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24650 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>11:33:44</td>
+          <td>11:50:07</td>
+          <td>22</td>
+          <td>1430</td>
+          <td>130.72</td>
+          <td>126.08</td>
+          <td class="neg">-₹6,644.21</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24650 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>11:33:44</td>
+          <td>11:50:07</td>
+          <td>5</td>
+          <td>325</td>
+          <td>130.50</td>
+          <td>126.08</td>
+          <td class="neg">-₹1,437.83</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24600 PUT</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>12:24:46</td>
+          <td>12:32:08</td>
+          <td>16</td>
+          <td>1040</td>
+          <td>143.38</td>
+          <td>163.92</td>
+          <td class="pos">+₹21,355.74</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24550 PUT</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>12:54:22</td>
+          <td>14:39:43</td>
+          <td>16</td>
+          <td>1040</td>
+          <td>154.57</td>
+          <td>151.13</td>
+          <td class="neg">-₹3,573.91</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24550 PUT</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>12:54:54</td>
+          <td>14:39:43</td>
+          <td>8</td>
+          <td>520</td>
+          <td>156.35</td>
+          <td>151.13</td>
+          <td class="neg">-₹2,714.84</td>
+        </tr>
+      </table>
+      <p class="pending">Ledger statement not yet uploaded for this day — figures above are raw trade-price P/L and do not yet include brokerage/STT/GST charges. Upload the Dhan ledger covering 05 Aug 2026 to confirm the audited net P/L and equity.</p>
+    </section>
+    
+    <section class="day">
+      <h2>06 Aug 2026</h2>
+      <div class="daystats">
+        
+        <div class="stat"><span>Realized P/L (raw)</span><b class="pos">+₹39,390.01</b></div>
+        <div class="stat"><span>Equity after (provisional)</span><b>₹346,641.71</b></div>
+      </div>
+      <table>
+        <tr><th>Instrument</th><th>Type</th><th>Opened</th><th>Closed</th><th>Lots</th><th>Qty</th><th>Entry</th><th>Exit</th><th>P/L</th></tr>
+        
+        <tr>
+          <td>NIFTY 24600 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>09:19:57</td>
+          <td>09:45:07</td>
+          <td>24</td>
+          <td>1560</td>
+          <td>160.40</td>
+          <td>180.53</td>
+          <td class="pos">+₹31,398.26</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24650 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>12:21:43</td>
+          <td>14:28:36</td>
+          <td>16</td>
+          <td>1040</td>
+          <td>146.75</td>
+          <td>153.70</td>
+          <td class="pos">+₹7,228.00</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24650 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>12:36:18</td>
+          <td>14:28:36</td>
+          <td>11</td>
+          <td>715</td>
+          <td>152.95</td>
+          <td>153.70</td>
+          <td class="pos">+₹536.25</td>
+        </tr>
+        <tr>
+          <td>NIFTY 24650 CALL</td>
+          <td><span class="tag sd">Same-day</span></td>
+          <td>12:36:18</td>
+          <td>14:28:36</td>
+          <td>5</td>
+          <td>325</td>
+          <td>152.95</td>
+          <td>153.65</td>
+          <td class="pos">+₹227.50</td>
+        </tr>
+      </table>
+      <p class="pending">Ledger statement not yet uploaded for this day — figures above are raw trade-price P/L and do not yet include brokerage/STT/GST charges. Upload the Dhan ledger covering 06 Aug 2026 to confirm the audited net P/L and equity.</p>
+    </section>
+    
+
+  <div class="chart-section">
+    <h2>Equity Curve</h2>
+    <div id="eq"><svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:Inter,sans-serif;">
+  <defs>
+    <linearGradient id="eqfill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f2438" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#0f2438" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <line x1="70" y1="310.0" x2="870" y2="310.0" stroke="#e3ddd0" stroke-width="1"/><line x1="70" y1="252.8" x2="870" y2="252.8" stroke="#e3ddd0" stroke-width="1"/><line x1="70" y1="195.6" x2="870" y2="195.6" stroke="#e3ddd0" stroke-width="1"/><line x1="70" y1="138.4" x2="870" y2="138.4" stroke="#e3ddd0" stroke-width="1"/><line x1="70" y1="81.2" x2="870" y2="81.2" stroke="#e3ddd0" stroke-width="1"/><line x1="70" y1="24.0" x2="870" y2="24.0" stroke="#e3ddd0" stroke-width="1"/>
+  <path d="M 70.0,286.2 L 85.7,95.0 L 101.4,97.8 L 117.1,101.5 L 132.7,101.9 L 148.4,89.3 L 164.1,79.5 L 179.8,79.4 L 195.5,79.4 L 211.2,80.2 L 226.9,48.3 L 242.5,47.8 L 258.2,49.3 L 273.9,52.3 L 289.6,69.4 L 305.3,79.5 L 321.0,96.6 L 336.7,103.1 L 352.4,109.6 L 368.0,120.7 L 383.7,127.2 L 399.4,134.1 L 415.1,135.3 L 430.8,145.1 L 446.5,146.3 L 462.2,154.5 L 477.8,156.1 L 493.5,165.6 L 509.2,167.1 L 524.9,173.1 L 540.6,177.2 L 556.3,183.2 L 572.0,180.4 L 587.6,177.4 L 603.3,173.6 L 619.0,171.6 L 634.7,166.7 L 650.4,165.7 L 666.1,159.9 L 681.8,159.9 L 697.5,160.5 L 713.1,163.3 L 728.8,163.9 L 744.5,154.9 L 760.2,156.4 L 775.9,157.5 L 791.6,157.5 L 807.3,144.2 L 822.9,141.1 L 838.6,140.9 L 854.3,140.8 L 870.0,140.8 L 870.0,310.0 L 70.0,310.0 Z" fill="url(#eqfill)" stroke="none"/>
+  <path d="M 70.0,286.2 L 85.7,95.0 L 101.4,97.8 L 117.1,101.5 L 132.7,101.9 L 148.4,89.3 L 164.1,79.5 L 179.8,79.4 L 195.5,79.4 L 211.2,80.2 L 226.9,48.3 L 242.5,47.8 L 258.2,49.3 L 273.9,52.3 L 289.6,69.4 L 305.3,79.5 L 321.0,96.6 L 336.7,103.1 L 352.4,109.6 L 368.0,120.7 L 383.7,127.2 L 399.4,134.1 L 415.1,135.3 L 430.8,145.1 L 446.5,146.3 L 462.2,154.5 L 477.8,156.1 L 493.5,165.6 L 509.2,167.1 L 524.9,173.1 L 540.6,177.2 L 556.3,183.2 L 572.0,180.4 L 587.6,177.4 L 603.3,173.6 L 619.0,171.6 L 634.7,166.7 L 650.4,165.7 L 666.1,159.9 L 681.8,159.9 L 697.5,160.5 L 713.1,163.3 L 728.8,163.9 L 744.5,154.9 L 760.2,156.4 L 775.9,157.5 L 791.6,157.5 L 807.3,144.2 L 822.9,141.1 L 838.6,140.9 L 854.3,140.8 L 870.0,140.8" fill="none" stroke="#0f2438" stroke-width="2.2"/>
+  <circle cx="70.0" cy="286.2" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>28-Jul Opening: ₹4,427.92</title></circle><circle cx="85.7" cy="95.0" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>30-Jul Deposit: ₹454,427.92</title></circle><circle cx="101.4" cy="97.8" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>30-Jul Trade: ₹447,944.17</title></circle><circle cx="117.1" cy="101.5" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>30-Jul Trade: ₹439,282.92</title></circle><circle cx="132.7" cy="101.9" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>30-Jul Charges: ₹438,190.54</title></circle><circle cx="148.4" cy="89.3" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>31-Jul CF close: ₹467,941.02</title></circle><circle cx="164.1" cy="79.5" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>31-Jul CF close: ₹491,081.02</title></circle><circle cx="179.8" cy="79.4" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>31-Jul Trade: ₹491,337.78</title></circle><circle cx="195.5" cy="79.4" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>31-Jul Trade: ₹491,311.78</title></circle><circle cx="211.2" cy="80.2" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>31-Jul Charges: ₹489,396.97</title></circle><circle cx="226.9" cy="48.3" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>03-Aug Trade: ₹564,585.78</title></circle><circle cx="242.5" cy="47.8" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>03-Aug Trade: ₹565,574.07</title></circle><circle cx="258.2" cy="49.3" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>03-Aug Charges: ₹562,071.23</title></circle><circle cx="273.9" cy="52.3" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹554,971.76</title></circle><circle cx="289.6" cy="69.4" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹514,741.48</title></circle><circle cx="305.3" cy="79.5" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹491,086.29</title></circle><circle cx="321.0" cy="96.6" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹450,872.47</title></circle><circle cx="336.7" cy="103.1" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹435,532.47</title></circle><circle cx="352.4" cy="109.6" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹420,192.47</title></circle><circle cx="368.0" cy="120.7" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹394,116.51</title></circle><circle cx="383.7" cy="127.2" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹378,777.72</title></circle><circle cx="399.4" cy="134.1" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹362,478.97</title></circle><circle cx="415.1" cy="135.3" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹359,602.72</title></circle><circle cx="430.8" cy="145.1" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹336,598.48</title></circle><circle cx="446.5" cy="146.3" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹333,722.96</title></circle><circle cx="462.2" cy="154.5" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹314,417.96</title></circle><circle cx="477.8" cy="156.1" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹310,557.44</title></circle><circle cx="493.5" cy="165.6" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹288,359.46</title></circle><circle cx="509.2" cy="167.1" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹284,849.46</title></circle><circle cx="524.9" cy="173.1" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹270,705.46</title></circle><circle cx="540.6" cy="177.2" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹260,981.46</title></circle><circle cx="556.3" cy="183.2" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹246,837.46</title></circle><circle cx="572.0" cy="180.4" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹253,379.71</title></circle><circle cx="587.6" cy="177.4" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹260,525.37</title></circle><circle cx="603.3" cy="173.6" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹269,457.46</title></circle><circle cx="619.0" cy="171.6" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹274,250.13</title></circle><circle cx="634.7" cy="166.7" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹285,632.72</title></circle><circle cx="650.4" cy="165.7" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹288,024.72</title></circle><circle cx="666.1" cy="159.9" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug Trade: ₹301,703.97</title></circle><circle cx="681.8" cy="159.9" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>04-Aug (provisional): ₹301,703.97</title></circle><circle cx="697.5" cy="160.5" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>05-Aug Trade: ₹300,266.74</title></circle><circle cx="713.1" cy="163.3" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>05-Aug Trade: ₹293,622.53</title></circle><circle cx="728.8" cy="163.9" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>05-Aug Trade: ₹292,184.71</title></circle><circle cx="744.5" cy="154.9" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>05-Aug Trade: ₹313,540.45</title></circle><circle cx="760.2" cy="156.4" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>05-Aug Trade: ₹309,966.53</title></circle><circle cx="775.9" cy="157.5" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>05-Aug Trade: ₹307,251.70</title></circle><circle cx="791.6" cy="157.5" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>05-Aug (provisional): ₹307,251.70</title></circle><circle cx="807.3" cy="144.2" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>06-Aug Trade: ₹338,649.96</title></circle><circle cx="822.9" cy="141.1" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>06-Aug Trade: ₹345,877.96</title></circle><circle cx="838.6" cy="140.9" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>06-Aug Trade: ₹346,414.21</title></circle><circle cx="854.3" cy="140.8" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>06-Aug Trade: ₹346,641.71</title></circle><circle cx="870.0" cy="140.8" r="4" fill="#b8863b" stroke="#fff" stroke-width="1.5"><title>06-Aug (provisional): ₹346,641.71</title></circle>
+  <text x="60" y="314.0" text-anchor="end" font-size="11" fill="#6b7686" font-family="IBM Plex Mono, monospace">₹-51,687</text><text x="60" y="256.8" text-anchor="end" font-size="11" fill="#6b7686" font-family="IBM Plex Mono, monospace">₹82,988</text><text x="60" y="199.6" text-anchor="end" font-size="11" fill="#6b7686" font-family="IBM Plex Mono, monospace">₹217,663</text><text x="60" y="142.4" text-anchor="end" font-size="11" fill="#6b7686" font-family="IBM Plex Mono, monospace">₹352,339</text><text x="60" y="85.2" text-anchor="end" font-size="11" fill="#6b7686" font-family="IBM Plex Mono, monospace">₹487,014</text><text x="60" y="28.0" text-anchor="end" font-size="11" fill="#6b7686" font-family="IBM Plex Mono, monospace">₹621,689</text>
+  <text x="70.0" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 70.0 332)">28-Jul Opening</text><text x="164.1" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 164.1 332)">31-Jul CF close</text><text x="258.2" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 258.2 332)">03-Aug Charges</text><text x="352.4" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 352.4 332)">04-Aug Trade</text><text x="446.5" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 446.5 332)">04-Aug Trade</text><text x="540.6" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 540.6 332)">04-Aug Trade</text><text x="634.7" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 634.7 332)">04-Aug Trade</text><text x="728.8" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 728.8 332)">05-Aug Trade</text><text x="822.9" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 822.9 332)">06-Aug Trade</text><text x="870.0" y="332" text-anchor="end" font-size="10.5" fill="#6b7686" font-family="Inter, sans-serif" transform="rotate(-32 870.0 332)">06-Aug (provisional)</text>
+  <line x1="70" y1="310" x2="870" y2="310" stroke="#0f2438" stroke-width="1"/>
+</svg></div>
+  </div>
+
+  <div class="ledger-section">
+    <h2>Ledger (audit trail)</h2>
+    <table>
+      <tr><th>Date</th><th>Event</th><th>Amount</th><th>Balance</th></tr>
+      
+    <tr>
+      <td>28 Jul 2026</td>
+      <td>OPENING BALANCE</td>
+      <td class="pos">+₹4,427.92</td>
+      <td>₹4,427.92</td>
+    </tr>
+    <tr>
+      <td>30 Jul 2026</td>
+      <td>Funds Deposited</td>
+      <td class="pos">+₹450,000.00</td>
+      <td>₹454,427.92</td>
+    </tr>
+    <tr>
+      <td>30 Jul 2026</td>
+      <td>Trades Executed</td>
+      <td class="neg">-₹399,152.38</td>
+      <td>₹55,275.54</td>
+    </tr>
+    <tr>
+      <td>31 Jul 2026</td>
+      <td>Trades Executed</td>
+      <td class="pos">+₹434,121.43</td>
+      <td>₹489,396.97</td>
+    </tr>
+    <tr>
+      <td>03 Aug 2026</td>
+      <td>Trades Executed</td>
+      <td class="pos">+₹72,674.26</td>
+      <td>₹562,071.23</td>
+    </tr>
+    </table>
+  </div>
+
+  <footer>
+    <b>Methodology:</b> Trade P/L is computed on a FIFO basis, matching each closing (sell) order against the
+    oldest open (buy) lots for that instrument, including positions carried forward across trading days.
+    "Charges" is the residual between raw trade-price cash flow and the actual net cash movement booked in the
+    Dhan ledger for that day &mdash; i.e. brokerage, STT, exchange fees and GST. Days awaiting a ledger update
+    or an orders export are marked provisional/pending and are not yet included in the audited totals above.
+  </footer>
+
+</div>
+
+</body>
+</html>
